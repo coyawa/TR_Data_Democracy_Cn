@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml"><head><title>How (and Why) to Follow the Money in Politics</title><link rel="stylesheet" type="text/css" href="epub.css"/></head><body data-type="book"><section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 5. How (and Why) to Follow the Money in Politics"><div class="chapter" id="idm140465299430240">
+<h1><span class="label">Chapter 5. </span>How (and Why) to Follow the Money in Politics</h1>
+
+<p class="byline">Derek Willis</p>
+
+<blockquote>
+<p><em>Derek Willis is a news applications developer at ProPublica, where he maintains political data websites and APIs and does some reporting, too. He previously worked at The New York Times.</em></p></blockquote>
+
+<p>Campaign finance data is ultimately about behavior. Journalists follow the money in politics because it reveals the connections between donors and politicians and tells us something about how campaigns operate. Fundraising and spending data helps us see whether politicians actually do what they say, what each candidate’s priorities are in running a campaign, and which people and organizations play major roles in campaigns. Even though the amounts of money can be distracting, campaign finance data is a reminder that politics is about people and their decisions.</p>
+
+<p>As a journalist, what interests me is how campaigns raise and spend their money, and in particular how the Internet is changing that. I try to find stories in the data, keeping in mind that the best stories involve people doing things—sometimes fascinating or unique, sometimes banal or criminal.</p>
+
+<section data-type="sect1" data-pdf-bookmark="Getting Campaign Finance Data"><div class="sect1" id="idm140465299422352">
+<h1>Getting Campaign Finance Data</h1>
+
+<p>First, a brief history of federal campaign finance data in the United States. Whenever you hear, “This is the most expensive election in history,” know that “history” means since 1978, since that was when the Federal Election Commission (FEC) began collecting and publishing data that campaigns, journalists, and researchers can download and use. Here’s how it works: political campaigns and organizations (“committees”) register with the FEC, then file reports listing their contributions and expenditures on a regular schedule. The FEC takes that information, standardizes it, and releases weekly files covering a two-year election cycle on its <a href="http://www.fec.gov/finance/disclosure/ftp_download.shtml">FTP site</a>.</p>
+
+<p>For years, that was the only way to get FEC data: wait until Monday morning when updated files were published, then download them, and import them into your database of choice. And the practice continues today—rare among government agencies, the FEC believes in and practices backwards compatibility for its data files. You could, if you wanted to, maintain a local copy of every disclosed contribution since 1978. But there’s a big catch: for years, that information had to be entered by hand by the FEC’s contractors. (Because of a quirk in campaign finance law, reports by senate candidates still require this step.) That meant (and still means) a delay of weeks for some data, as some filings run thousands of pages long.</p>
+
+<p>Thankfully, most committees now file electronic reports, which means we can see them almost immediately on filing deadlines. This is a very good thing for people interested in campaigns, and not just because we don’t have to wait for data. Electronic filing means we actually get more data: expenditures, which the FEC did not keypunch for years, are now available, as are street addresses for donors and recipients, which the FEC avoided as a cost-saving measure when data entry was labor-intensive.</p>
+
+<p>A small group of developers at <em>The New York Times</em>, the Associated Press, and ProPublica, among other news organizations, have written <a href="https://github.com/nytimes/fech">software</a> to parse the electronic filings and make them more useful for journalism. But there’s a catch here, too. The electronic filings are considered unofficial by the FEC until they are processed and released via FTP. And for good reason, too: they do contain mistakes, in terms of both substantive content and data formatting. So, as the adage goes: timeliness, accuracy, completeness—pick two, most of the time.</p>
+
+  
+</div></section>
+
+<section data-type="sect1" data-pdf-bookmark="The Toolkit"><div class="sect1" id="idm140465299421296">
+<h1>The Toolkit</h1>
+
+<p>The hard part about working with FEC data isn’t the technical stuff. If you know SQL and a general-purpose language like Python or Ruby, it’s not hard to work with the FTP data, which has <a href="http://www.fec.gov/finance/disclosure/ftpdet.shtml">solid documentation</a>. More important are the lessons learned from working with the data and understanding the political system that it describes. That’s why it can help to have software that is regularly interviewing the data, comparing new records to older ones and identifying patterns and outliers.</p>
+
+<p>At ProPublica, where I maintain our campaign finance data, we use PostgreSQL for storage and a Ruby on Rails application to handle regular updates, common analysis tasks, and the API that we offer (the FEC has <a href="https://api.open.fec.gov/developers/">its own API</a>, in beta). Almost everything is automated. We load new electronic filings every 15 minutes, and update some of the larger files produced by the FEC daily or weekly. We need the ability to make manual edits sometimes, but not often, and usually to fix an obvious error in the data.</p>
+
+<p>This isn’t exactly big data by industry standards: we’ve got more than 100 million rows of data covering contributions, expenses, and other records included in the FTP data dating back more than 10 years. But some individual filings, which can contain multiple record layouts in a single text file and include millions of individual contributions, can consume a lot of resources to load and process. And while bigger campaigns account for more of the data, fundraising occurs whether an election is considered competitive or not.</p>
+
+<p>Part of the software process is translating the questions we have into code. Most of these are basic heuristics, but machine learning can play a role in standardization; <em>The New York Times</em> has developed software to help standardize donors based on the name and address information contained in filings. We’ve also adapted statistical tests to find connections among donors and recipients, using cosine similarity as a measurement of how alike two recipients are. The harder task is trying to learn enough from changes in the entire campaign finance system to look for things we’ve not seen before. A lot of those changes have come about thanks to the Internet.</p>
+
+  
+</div></section>
+
+<section data-type="sect1" data-pdf-bookmark="What the Internet Has Changed"><div class="sect1" id="idm140465299421040">
+<h1>What the Internet Has Changed</h1>
+
+<p>When Bernie Sanders began his presidential campaign in 2015, he had few of the traditional fundraising networks to rely upon. As a senator from Vermont, he had access to some individuals willing to give him donations of up to the $2,700 federal limit, and something of a national following, albeit small compared to some other politicians. But he didn’t need one, thanks to online fundraising. Supporters could—and did—repeatedly donate small amounts to Sanders’ campaign, mostly through <a href="https://secure.actblue.com/">ActBlue</a>, a unique type of committee that serves as a conduit to Democratic campaigns and related organizations.</p>
+
+<p>ActBlue provides campaigns with the standard tools of a digital campaign platform—hosting websites, managing email programs, and processing donations—but the group itself is organized as a nonprofit political action committee rather than a for-profit vendor. Because of that, FEC rules require ActBlue to report the details of all donations it processes for its clients, not just those from donors who have given a total of $200 or more (the standard for donations directly to campaigns or through commercial processors). This means that ActBlue’s filings provide an unprecedented amount of data to analyze. The group’s 2015 year-end filing, for example, was the largest single filing in the FEC’s history, at over 3.1 <em>million</em> pages, and its monthly filings have averaged more than a million pages <em>each</em> in 2016.</p>
+
+<p>Thanks to ActBlue’s filings, we have a much better idea of who Sanders’ financial supporters are, and likewise donors to other major committees (such as the Democratic Congressional Campaign Committee) that also use ActBlue’s platform. By matching these contributions to voter file records, campaigns can use this information to identify voters receptive to these campaigns’ messages. (By law, other committees cannot directly use Sanders’ contribution data to solicit for their own fundraising, but they can use it to help improve what they know about politically active individuals.)</p>
+
+<p>We can’t see this in real-time, but committees file at least once every three months (with more frequent filings by larger organizations and closer to Election Day), and committees often amend previous filings in between to correct mistakes and account for refunds. We do see filings almost every day, and direct online access to the FEC’s records makes it possible to examine not just the financial activity of a single campaign or race but of the entire system of campaign finance. That’s the next step for those of us who work with campaign finance data.</p>
+
+</div></section>
+
+<section data-type="sect1" data-pdf-bookmark="The Challenges Ahead"><div class="sect1" id="idm140465299397552">
+<h1>The Challenges Ahead</h1>
+
+<p>To study the system as a whole, we need complete data, and right now we don’t have it. The most important single step that Congress could take is to require senate candidates to file their reports electronically. This would close a loophole that makes it nearly impossible to provide a complete picture before an election is held.</p>
+
+<p>Another task that’s getting easier is donor and recipient standardization. Both require a combination of machine learning techniques that enable comparisons of large numbers of records and manual research. Now that it’s easier than ever to give smaller amounts, we need to pay more attention to donors who make dozens of small contributions, not just wealthy ones who can write checks for thousands of dollars at a time, which has long been our focus. Shifting towards examining these donors could make the system more approachable to more people, since most Americans don’t make political contributions.</p>
+
+<p>Spending data isn’t just overlooked; it’s also one of the clearest indications of political intent in campaigns, as opposed to what politicians might say. There’s a phrase I’ve heard clergy members tell their congregations that applies here: “Don’t tell me what you believe. Show me your checkbook, and I’ll tell you what you believe.”</p>
+
+<p>Finally, we’ve long placed an emphasis on campaign finance in races for president and Congress, and less on state and local races. That’s largely because there’s a single federal system for campaign finance data, while each state runs its own for non-federal races. The single federal regulatory system is easier to deal with, but 50 disparate regulatory environments can provide opportunities for those looking to exploit the system for personal or political benefit.</p>
+
+<p>Most people don’t think of elections as “federal” or “state,” and races at one level can impact the others. What we need to work on in the years ahead are systems that help make it easier to see the money connections between campaigns no matter where they are or who contributes to them. The open data example set by the FEC is a good one for states and counties to follow (and some state and local authorities do that and more), even if it’s not perfect in every case.</p>
+
+  
+</div></section>
+</div></section></body></html>

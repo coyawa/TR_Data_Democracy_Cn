@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml"><head><title>Election Forecasting in the Media</title><link rel="stylesheet" type="text/css" href="epub.css"/></head><body data-type="book"><section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 7. Election Forecasting in the Media"><div class="chapter" id="idm140465299407728">
+<h1><span class="label">Chapter 7. </span>Election Forecasting in the Media</h1>
+
+<p class="byline">Natalie Jackson</p>
+
+<blockquote>
+<p><em>Natalie Jackson is Senior Polling Editor at Huffington Post, coordinating the Pollster section of the site. Her primary focus is on polling coverage and methodology, statistical methods, and using polls to forecast elections. Natalie has a PhD in political science from the University of Oklahoma, with heavy emphasis on statistics, survey methodology, and American politics. </em></p></blockquote>
+
+<p>Election forecasting has been around for many years in academic circles, but in the last few presidential election cycles it has seen tremendous growth in the media. Networks and other media outlets have gathered polls and made electoral projections for decades, but recently advanced statistical models have become more prominent in elections coverage. In 2008, Nate Silver debuted his FiveThirtyEight blog with his projection that then-Senator Barack Obama would defeat Senator John McCain, and the market for that kind of statistical model has expanded in each subsequent election cycle. In 2014, <em>The Huffington Post</em>, <em>The New York Times</em>, FiveThirtyEight (by then its own media outlet), <em>The Daily Kos</em>, and <em>The Washington Post</em> all had forecast models for the midterm senate races.</p>
+
+<p>The process of election forecasting is complex, but the general public seems to love forecasts. A challenge, however, is getting that audience to understand that a forecast—for example, Candidate A has a 60% chance of winning—is not as simple as it sounds.</p>
+
+<section data-type="sect1" data-pdf-bookmark="The Basic Mechanics of Election Forecasting"><div class="sect1" id="idm140465299351808">
+<h1>The Basic Mechanics of Election Forecasting</h1>
+
+<p>Most media forecast models use time-series methods to combine data into a rolling daily prediction of how likely a candidate is to win an election. Much of the data comes from publicly released pre-election polls, although there are many other data sources that can be included as well. The key difference between these forecast models and simpler polling aggregations is that forecasts project beyond the polls, whereas the aggregations simply average the most recent polls.</p>
+
+<p>Every forecast is slightly different, but there are some basics that differentiate them: whether the modeling technique is Bayesian, and whether the model includes data other than polls.</p>
+
+<section data-type="sect2" data-pdf-bookmark="Bayesian versus Frequentist Modeling"><div class="sect2" id="idm140465299340848">
+<h2>Bayesian versus Frequentist Modeling</h2>
+
+<p>From a data perspective, the fundamental difference between a Bayesian forecast model and a non-Bayesian (frequentist) forecast model is the ability to incorporate ''priors” into the model that quantify what’s already known about the election. We usually know quite a bit about upcoming elections by learning from past elections, so this prior information can give us a place to start with our predictions.</p>
+
+<p>For example, the 2014 senate forecast model I created for <em>The Huffington Post</em> used a Bayesian method: Kalman filtering. To come up with priors, I used the <em>Cook Report</em>’s estimates of whether the senate race was a “tossup” or was leaning, likely, or solidly Republican or Democrat. An analysis of past <em>Cook</em> ratings and election results provided information on the distribution of final vote shares for races assigned to each rating category in past election cycles. Those parameters served as the priors for the 2014 senate races, effectively incorporating all the information inherent in current <em>Cook</em> ratings as well as their past performance. As new polling data became available, it was used to update the priors and produce a distribution of possible outcomes for each race. The means of those “posterior” distributions were the vote share estimates, and the distributions themselves provided the estimates of uncertainty and the probabilities of each outcome.</p>
+
+<p>Non-Bayesian modeling eliminates the priors and works with traditional regression techniques. The basic procedure is similar, however. Polling averages are typically calculated using some form of time-series model. If election fundamentals—other non-polling data that can help predict election outcomes, such as the state of the economy—are included, they are combined or modeled to get a fundamentals estimate. Then the polls and fundamentals are put together to generate a single outcome. These outcomes can still be expressed in probabilistic terms using the confidence intervals and standard errors that the models produce, so that both the Bayesian and frequentist models are reported similarly. It is only in reading the details of each model that the difference in techniques becomes clear.</p>
+
+<p>Bayesian modeling requires different software tools than frequentist regression modeling. Most of the coding and analysis can be done in R, but you need special-purpose Bayesian modeling software such as JAGS (for Mac users) or BUGS (for Windows users) to execute the model. For frequentist modeling, depending on the exact type of model you choose, you can use a wide variety of statistical modeling software, including many open-source packages available in R, Python, and other common programming languages.</p>
+
+</div></section>
+
+<section data-type="sect2" data-pdf-bookmark="Fundamentals versus Polls-Only"><div class="sect2" id="idm140465299336128">
+<h2>Fundamentals versus Polls-Only</h2>
+
+<p>Another key difference between types of forecast models in the media is whether the model includes so-called “fundamentals” about the election or is only using polls to construct the forecast. Fundamentals are generally anything besides horserace polls that contains information about how the election might turn out: indicators of the national mood, measures of the partisan makeup of the district or state, incumbents’ previous win margins, measures of political experience for each candidate, fundraising and ideology scores for the candidates, or any other relevant metric.</p>
+
+<p>There isn’t any evidence that fundamentals dramatically improve a model’s predictive power close to the election, but they do offer more long-term stability when the election is months away. Fundamentals provide more information about the electorate and the general election atmosphere, and they don’t change as frequently as polls can a long time before the election.</p>
+
+  
+</div></section>
+<section data-type="sect2" data-pdf-bookmark="Estimating the Electoral College"><div class="sect2" id="idm140465299343904">
+<h2>Estimating the Electoral College</h2>
+
+<p>Most models use Monte Carlo simulations to estimate the final probabilities of a presidential candidate winning an election across the various states, or as in the 2014 models, to estimate the likelihood that a party will maintain or take over control of the Senate. The probability of each individual state race going Democratic or Republican is put into the simulations, and in a presidential election forecast, winning a state is converted to the number of electoral votes the winner would receive for that state; in a senate forecast the election in each state is counted as one seat. The Monte Carlo process simulates many different random elections and the proportion of times a presidential candidate gets more than 270 electoral votes or a party has 51 or more seats in the Senate is the final probability for the outcome of the contests.</p>
+
+  
+</div></section>
+
+
+</div></section>
+
+<section data-type="sect1" data-pdf-bookmark="Communicating About the Model"><div class="sect1" id="idm140465299369504">
+<h1>Communicating About the Model</h1>
+
+<p>In media forecasting, it’s not enough to have a good model. You have to be able to explain it to the audience. This task can be even more difficult than building the model itself. Explaining the uncertainty of probability-based forecasting to the general public is a task that has flummoxed scientists, and particularly weather scientists, for many years. It seems no matter how many times you remind the public that forecasts are based on uncertain probabilities, some people want to read the numbers as completely certain, and then castigate the analysts if the outcome is different from their expectations.</p>
+
+<p>All of the major media forecasts for 2014 measured the outcome in terms of the probability that the Republicans would take over the majority in the Senate and splashed those numbers on a main forecast landing page. Most forecasters did explain the uncertainty of the forecasts, often in great detail. However, these discussions of uncertainty were typically buried in long discussions of the methods used to generate the estimates—which most people will not read all the way through—and the message was easily lost.</p>
+
+<p>The (probably large) portion of the audience who went directly to the forecast pages, ignoring the methods explanations, saw numbers that declared how likely the Republicans were to take over the Senate without any explanation for what an 80% likelihood actually means. Presenting the numbers with the appropriate explanation of uncertainty, without requiring the audience to spend an hour reading model details, is something public forecasters will need to work on in the future.</p>
+
+  
+</div></section>
+<section data-type="sect1" data-pdf-bookmark="The Future of Election Forecasting"><div class="sect1" id="idm140465299326016">
+<h1>The Future of Election Forecasting</h1>
+
+<p>Media-produced forecasts might not proliferate much more, however. These kinds of forecasts that need to appeal to a broader audience could face a few issues if more outlets get into the game. First, presumably there is a finite audience that these media forecasts can appeal to because of their statistical complexity. Additionally, most forecasts generally come to the same conclusion as Election Day nears, so the utility of developing more forecasts is questionable. The skillset is expensive and complex.</p>
+
+<p>At the same time, forecasting is likely to become more common as technological advances make statistical tools more user friendly, also similar to what happened with polls in the last few decades. It’s possible that more forecasts would flood the market and the bubble of election forecasting popularity could burst, particularly if forecasts are not as accurate as they have been between 2008 and 2014. And, although the forecasts might already seem ubiquitous, 2016 is only the third presidential election cycle to feature forecasting. It remains to be seen whether forecasting is a temporary trend or will become a permanent fixture in election coverage.</p>
+
+  
+</div></section>
+
+</div></section></body></html>

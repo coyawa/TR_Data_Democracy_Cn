@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml"><head><title>Data-Driven Media Optimization</title><link rel="stylesheet" type="text/css" href="epub.css"/></head><body data-type="book"><section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 4. Data-Driven Media Optimization"><div class="chapter" id="idm140465299598112">
+<h1><span class="label">Chapter 4. </span>Data-Driven Media Optimization</h1>
+
+<p class="byline">Alex Lundry</p>
+
+<blockquote>
+<p><em>Alex Lundry is the cofounder and Chief Data Scientist at Deep Root Analytics. He is one of the country’s leading experts on media and voter analytics, electoral targeting, and political data mining, and has directed the data science efforts of two presidential campaigns.</em></p></blockquote>
+
+<p>It shouldn’t surprise anyone that the Fox News Channel is a good place to find and advertise to Republican voters. But what may surprise you is the degree to which Republican campaigns rely upon Fox News for their television positioning. In the 2014 Texas Republican primary, nearly two-thirds of Republican advertisements on cable occurred on the network, and in the race for Lieutenant Governor a stunning 99.9% of all candidates’ cable spots ran on Fox.</p>
+
+<p>This rush for inventory on Fox News has two rather impactful negative consequences for Republican campaigns. First, their ads are being shown in an environment where they are bound to run up against their competitors. Second, and probably more consequential, the rates Fox can charge for a 30-second ad increase exponentially as demand rises for a limited supply of slots. Surely there are other, less-dense and less-expensive places to find Republicans on television. </p>
+
+<p>In 2014, one Republican campaign that did things differently—the Abbott for Governor campaign—ran only 19% of their cable advertising on Fox. Why? They ran media optimization models against the Republican primary audience and identified programming that gave them broad reach into their target but also balanced target density for each show against its cost efficiency. At the end of the campaign, a randomized controlled experiment revealed their targeted TV efforts to be the most impactful of all their campaign communications. Their buying habits were responsible for a 10.4 percentage point gain in net favorability of the candidate, more than twice as high as the next most impactful form of communication. </p>
+
+<section data-type="sect1" data-pdf-bookmark="Why Media Optimization Matters"><div class="sect1" id="idm140465299536816">
+<h1>Why Media Optimization Matters</h1>
+
+<p>Data-driven media optimization has become increasingly common since the 2012 elections. Practically, this is a function of the continued dominance of television advertising in political campaigns. Kantar Media estimates that in 2016, $4.4 billion will be spent on television advertising in political races. Though TV ads account for 80% of a typical campaign’s spending, until the uptake of media optimization tools, it was the least data driven. These techniques couldn’t have come at a better time, as the way viewers interact with televisions has changed (and continues to change) dramatically.</p>
+
+<p>At the dawn of the TV era, 68% of TV households watched <em>I Love Lucy</em>. But the top-rated show in 2013 was NBC’s <em>Sunday Night Football</em>, only reaching 12% of households. The growth of cable is a primary driver of this change, and indeed, cable’s share of overall TV viewership passed the 50% mark in 2001. Much of this is a function of the increasing number of channels available, growing from an average of 19 in 1984 to more than 189 today. And there’s more original content: 1999 saw only 23 original scripted series on cable, while this year there are 180. Moreover, an increasing number of consumers are cutting their cable subscriptions and moving to streaming providers like Netflix or Hulu. But despite the growth of these alternatives, even single Millennials, who are least attached to traditional television programming, watch more than two hours of live television on average every day. </p>
+
+<p>Even in this increasingly complex viewing environment, many advertisers continue to make suboptimal decisions about where to place their ads. The metaphors used by TV buyers speak volumes about their philosophy, using terms like “saturation,” “carpet bombing,” “spray and pray,” or “burning it in.” But in their defense, much of this philosophy is rooted in necessity, as one of the major encumbrances to change in advertising has been the data powering it: the Nielsen household. </p>
+
+  
+</div></section>
+<section data-type="sect1" data-pdf-bookmark="The Challenge of Measuring Viewership"><div class="sect1" id="idm140465299541504">
+<h1>The Challenge of Measuring Viewership</h1>
+
+<p>The television ratings used to drive billions of dollars of advertising each year are built off of the Nielsen company’s panel of individuals in each of the nation’s media markets.   Nielsen recruits a representative sample of Americans and either equips them with devices that will track their media consumption or asks them to keep detailed diaries of their usage. In each media market, Nielsen has a few thousand tracked respondents. This panel, while carefully recruited and maintained, suffers from a few key problems. </p>
+
+<p>First, diary measurement of TV consumption suffers from inherent issues of precision. Respondents may put off their diary entries and fail to accurately recall what they watched, or they may give in to social desirability bias (the desire to answer questions in a way that respondents think reflects well on themselves) and say they watched <em>Downton Abbey</em> rather than <em>Real Housewives</em>. Their viewing habits may also be more complex than what they can enter in the diary—say, if they are prone to channel flipping. Unfortunately, many key political markets (for example, all of Iowa) are entirely diary-based. And perhaps most importantly, the relatively small samples in the Nielsen panels means viewing habits can only be derived for a few key demographics such as gender, age, and ethnicity, and going deeper into subgroups can be highly unreliable. </p>
+
+<p>This is especially problematic when campaigns have largely moved away from basic demographic targeting in favor of individual voter-level predictive models. Campaigns no longer focus on winning “white suburban women,” but instead focus their efforts on individual voters who are predicted as likely to be persuadable. Nielsen is incapable of providing viewing information for a group like this because they lack both the voter information that campaigns have and the sample sizes to do a meaningful voter match to their panel.</p>
+
+<p>Fortunately, campaigns now have the ability to match their lists of voter targets with media consumption data taken directly from the devices that cable and satellite providers use to deliver programming. These set-top boxes were originally built only to push content to a household, but many are now able to pull back viewing information as well. In these instances, any time a viewer changes the channel on a TV, a new row is created in a dataset that is date- and time-stamped and has the network they arrived at.  The advantages of this data are significant, and it has all the hallmarks of a big data solution: the data has volume (it includes raw viewing data for millions of customers), it has velocity (new data is collected every day), and it has veracity (it contains directly observed logs rather than self reports).</p>
+
+  
+</div></section>
+
+<section data-type="sect1" data-pdf-bookmark="Working with TV Data"><div class="sect1" id="idm140465299521952">
+<h1>Working with TV Data</h1>
+
+<p>Providers of set-top box data take many steps to protect their customers’ privacy when sharing. Records can sometimes be matched directly to a campaign’s list of targeted voters, but the data is matched via an independent third party and sent back anonymized so that no analyst can see what a specific household has watched.  Additionally, many providers will go one step further and provide only aggregated information—campaigns will know how many of their targets were watching a particular program, but not which ones. The data also has varying degrees of latency that must be accounted for: some providers will deliver preliminary data within 24 hours that is then backfilled over one to two weeks, while others deliver data in batches two to three weeks afterward. </p>
+
+<p>Once acquired, this data must be further manipulated to be useful. Many sources of viewing data are imbalanced in terms of the type of people that use the service or the geographic coverage of the provider. To account for these biases, analysts have to apply weighting similar to what you might do with a survey that didn’t include enough young people. This process uses information about the households in our viewing data and adjusts the dataset to match our overall target group.</p>
+
+<p>The final balanced sample is used to derive the three key metrics used by any political media buyer:</p>
+
+<ul>
+	<li>the target rating, which estimates the percentage of the target audience that is watching a particular program</li>
+	<li>the target index, which tells us whether the proportion of viewers that are in our target audience is above or below average</li>
+	<li>the targeted cost per point, which serves as a normalized unit cost for ad placements so that we can measure the value we are getting out of each program </li>
+</ul>
+
+<p>The Federal Communications Commission (FCC) mandates that all political ad buys be placed in a publicly accessible database online, and this opens up a new avenue for campaigns to be adaptive and opportunistic: competitive advertising data. Campaigns can see where and when both allies and opponents are purchasing ads. Frustratingly, the data is released as unstandardized PDFs, but combining OCR tools with human coding can get the data into an operable format. From there, matching this planning data to viewership allows campaigns to identify key metrics like share of Voice (the percentage of all ads being run that are coming from the campaign) between campaigns by media market, network, and daypart.</p>
+
+<p>Campaigns also have access to retrospective data on what advertisements actually ended up airing. The data (compiled by Kantar Media) is limited to broadcast channels, but it gives a much more detailed look at when spots aired and their precise contents (issues, tone, and so forth), and it can similarly be matched to viewership data. This viewer-matching process can also be applied to “earned media” news coverage of a candidate or campaign: companies like Critical Mention and TVEyes track closed captions and can identify each time a candidate is mentioned.</p>
+
+<p>Beyond these viewership and advertising data sources, a variety of other datasets—social media sentiment about particular shows, radio and online media consumption data, or guide data on future programming—can all help to identify promising ad opportunities.</p>
+
+  
+</div></section>
+
+<section data-type="sect1" data-pdf-bookmark="Building Optimized Media Strategies"><div class="sect1" id="idm140465299439536">
+<h1>Building Optimized Media Strategies</h1>
+
+<p>Having established key metrics for media-buying and assessed the overall media environment, campaigns have a number of options for creating an optimized flight of inventory. The nature of this optimization depends on the goals of the particular moment. Campaigns must choose between, or try to balance, reach and frequency.  That is, for a given cost, an advertiser can choose between reaching many people a few times by targeting programs with high viewership or reaching a few people many times by purchasing more spots on programs with fewer viewers. </p>
+
+<p>Moreover, campaigns are usually trying to do this with an advertising schedule that gives them both “horizontal balance” (good representation in each of the TV viewing dayparts) and “vertical balance” (a mix across all of the networks). This is usually an attempt to maximize a schedule’s unduplicated reach—the calculation of the number of viewers that you are reaching at least once. And indeed, this becomes another important evaluative metric for the overall health of the ad buy.</p>
+
+<p>Finally, campaigns can also use this viewership data alongside other data sources that help give them a holistic view of the political media landscape. Tracking earned media (free publicity gained through social media, word of mouth, news mentions, etc.), for example, would enable a campaign to identify not only which newscasts most often mention their candidate, but also how many swing voters were likely to be watching. With this information, the campaign could choose to run ads on the same programs to complement or respond to that coverage, or alternatively, to direct ad resources to other channels where the audience is less likely to hear about the candidate otherwise. </p>
+
+<p>The complexity of media optimization underscores the need for analysts in the political space who possess a facility with varied datasets and can quickly process, clean, and merge these data with others. This means familiarity with cloud-based storage solutions like Amazon Web Services, distributed data processing platforms like Spark, query languages like PostgreSQL, and programming languages like R. At the same time, these analysts also need to understand the intricacies of the media buying process and how it fits into a broader campaign operation.</p>
+
+<p>Media optimization, previously the province of simplistic demographic targeting, has had to grow in its complexity to match the nuances of modern media consumption. Fortunately, the data now exists to perform the necessarily sophisticated analysis to account for this, and it has come at a critical time. A new generation of marketers has grown used to the targeting and optimization capabilities of online advertising, and applying the same optimized approach to TV allows campaigns to make their largest budgetary outlay both more effective and more efficient.</p>
+
+  
+</div></section>
+
+</div></section></body></html>
