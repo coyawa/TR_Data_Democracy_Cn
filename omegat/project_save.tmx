@@ -4,6 +4,14 @@
   <header creationtool="OmegaT" o-tmf="OmegaT TMX" adminlang="EN-US" datatype="plaintext" creationtoolversion="4.1.0_0_9507:9510" segtype="sentence" srclang="EN-US"/>
   <body>
 <!-- Default translations -->
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Andrew Therriault was the Democratic National Committee’s Director of Data Science from 2014 to 2016, leading a team that developed voter targeting models and other analytic tools used by thousands of Democratic campaigns.</seg>
+      </tuv>
+      <tuv lang="ZH-CN" changeid="Coyawa" changedate="20170122T001116Z" creationid="Coyawa" creationdate="20170122T001116Z">
+        <seg>安德鲁Therriault是民主党全国委员会的数据科学主任2014至2016年，主要是开发选民定位模型并通过数千民主运动使用的其他分析工具团队。</seg>
+      </tuv>
+    </tu>
 <!-- Alternative translations -->
   </body>
 </tmx>
