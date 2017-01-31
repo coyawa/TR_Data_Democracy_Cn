@@ -12,6 +12,14 @@
         <seg>安德鲁Therriault是民主党全国委员会的数据科学主任2014至2016年，主要是开发选民定位模型并通过数千民主运动使用的其他分析工具团队。</seg>
       </tuv>
     </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Modern campaigns in the US have become more reliant on data with each election cycle, using analytics to drive everything from overall strategy and messaging to individual voter contacts and advertising.</seg>
+      </tuv>
+      <tuv lang="ZH-CN" changeid="Coyawa" changedate="20170131T222955Z" creationid="Coyawa" creationdate="20170131T222955Z">
+        <seg>现在的美国大选中，Modern campaigns in the US have become more reliant on data with each election cycle, using analytics to drive everything from overall strategy and messaging to individual voter contacts and advertising.</seg>
+      </tuv>
+    </tu>
 <!-- Alternative translations -->
   </body>
 </tmx>
